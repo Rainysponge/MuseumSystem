@@ -22,21 +22,21 @@ class love(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, verbose_name="用户")
 
 
-class device(models.Model):
-    collectible = models.ForeignKey(collectible, on_delete=models.DO_NOTHING, verbose_name="藏品")
-    deviceId = models.CharField(max_length=64, verbose_name="监控设备号")
-
-
 class light(models.Model):
     collectible = models.ForeignKey(collectible, on_delete=models.DO_NOTHING, verbose_name="藏品")
     lightID = models.CharField(max_length=16, verbose_name="灯光效果")
 
 
 class monitorLimit(models.Model):
-    collectible = models.ForeignKey(collectible, on_delete=models.DO_NOTHING, verbose_name="藏品")
+    deviceId = models.CharField(max_length=36, verbose_name="设备号")
     lowTemperature = models.FloatField(verbose_name="最低温度")
     highTemperature = models.FloatField(verbose_name="最高温度")
     lowHumidity = models.FloatField(verbose_name="最低湿度")
     highHumidity = models.FloatField(verbose_name="最高湿度")
     highSound = models.FloatField(verbose_name="最高声响")
     highlight = models.FloatField(verbose_name="最高亮度")
+
+
+class device(models.Model):
+    collectible = models.ForeignKey(collectible, on_delete=models.DO_NOTHING, verbose_name="藏品")
+    deviceId = models.ForeignKey(monitorLimit, on_delete=models.DO_NOTHING, verbose_name="设备")

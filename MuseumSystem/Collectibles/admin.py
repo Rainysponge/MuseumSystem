@@ -30,4 +30,4 @@ class lightAdmin(admin.ModelAdmin):
 
 @admin.register(monitorLimit)
 class monitorLimitAdmin(admin.ModelAdmin):
-    list_display = ('id', 'collectible')
+    list_display = ('id', 'deviceId')
